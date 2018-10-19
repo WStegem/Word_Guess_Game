@@ -1,20 +1,49 @@
-var a
-var answer
-var guesses =[]
+var game=0
+var words = ['worda','wordb','wordc','wordd'];
+var guesses=[]
 var correctGuesses = 0
 var wrongGuesses = 0
-var words = ['worda','wordb','wordc','wordd'];
-var a = words[Math.floor(Math.random()*words.length)];
-var answer = a.split('');
+var tries = 5
+var a =''
+var answer=[]
 
+endGame()
+startGame()
 
-for(i=0;i<answer.length;i++){
-    var letter = document.createElement("h1");
-    letter.innerHTML = '_'
-    letter.setAttribute('id',i);
-    document.getElementById("wordGuess").appendChild(letter);
+function startGame(){
+    game=1
+    a = words[Math.floor(Math.random()*words.length)];
+    answer = a.split('');
+    document.getElementById('guessLeft').innerHTML = tries-wrongGuesses;
+    for(i=0;i<answer.length;i++){
+        var letter = document.createElement("h1");
+        letter.innerHTML = '_'
+        letter.setAttribute('id',i);
+        document.getElementById("wordGuess").appendChild(letter);
+    }
+    for(i=0;i<document.getElementsByClassName('game').length;i++){
+        document.getElementsByClassName('game')[i].style.visibility = 'visible';
+    }
+    document.getElementById('gameInfo').innerHTML = 'Try guessing the letters in the word'
 }
-
+function endGame(){
+    
+    game=0
+    guesses=[]
+    correctGuesses = 0
+    wrongGuesses = 0
+    answer=[]
+    for(i=0;i<document.getElementsByClassName('reset').length;i++){
+        document.getElementsByClassName('reset')[i].innerHTML = '';
+    }
+    for(i=0;i<document.getElementsByClassName('game').length;i++){
+        document.getElementsByClassName('game')[i].style.visibility = 'hidden';
+    }
+        document.getElementById('gameInfo').innerHTML = 'Press any key to start'
+}
+function correct(i){
+    document.getElementById(i).innerHTML=answer[i];
+}
 document.onkeyup = function (e){
     var guess = document.createElement('div')
     guess.innerHTML = e.key
@@ -54,22 +83,33 @@ document.onkeyup = function (e){
                     guesses.push(content)
                     document.getElementById("wrongGuess").appendChild(guess)
                     wrongGuesses++
-                    console.log('Wrong: '+wrongGuesses)
+                    document.getElementById('guessLeft').innerHTML = tries-wrongGuesses;
+                    if(tries-wrongGuesses<1){
+                        document.getElementById('gameInfo').innerHTML = 'You lose!'
+                        for (i=0;i<arr.length;i++){
+                            correct(i);
+                        }
+                        setTimeout(endGame, 3000)
+                        setTimeout(startGame, 3001)
+                    }
                 }
             }
             else{
-                for (i=0;i<arr.length;i++){
-                    if(guesses.indexOf(content)==-1)
+                if(guesses.indexOf(content)==-1){
+                    for (i=0;i<arr.length;i++){
                         if(arr[i]==content){
-                            guesses.push(content)
+                            guesses.push(content);
                             correct(i);
-                            correctGuesses++
-                            console.log('Right: '+correctGuesses)
+                            correctGuesses++;
+                            if (correctGuesses==arr.length){
+                                document.getElementById('gameInfo').innerHTML = 'You win!'
+                                setTimeout(endGame, 3000)
+                                setTimeout(startGame, 3001)
+                            }
                         }
+                            
+                    }
                 }
             }
-    }
-}
-function correct(i){
-    document.getElementById(i).innerHTML=answer[i];
+        }
 }

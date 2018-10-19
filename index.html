@@ -9,8 +9,16 @@
 </head>
 <body>
     
-    <div id=wordGuess></div>
-    <div id=wrongGuess></div>
+    <div id=gameInfo></div>
+    <div id=wordGuess class='game reset'></div>
+    <div class="game">
+        <div class='game inline'>Guesses left: </div>
+        <div id=guessLeft class='game reset inline'></div>
+    </div>
+    <div class="game">
+        <div class='game inline'>Wrong guesses: </div>
+        <div id=wrongGuess class='game reset inline'></div>
+    </div> 
 
 
 <script src="assets/javascript/game.js"></script> 
