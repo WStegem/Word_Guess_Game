@@ -1,5 +1,5 @@
 var game=0
-var words = ['worda','wordb','wordc','wordd'];
+var words = ['Space', 'Earth', 'Jupiter', 'Mars', 'Neptune', 'moon', 'Mercury', 'Pluto', 'Saturn, Venus', 'planet', 'waning', 'waxing', 'asteroid', 'astronaut', 'comet', 'binary', 'astronomer', 'astronomy', 'elliptical', 'density', 'constellation', 'cosmonaut', 'cosmos', 'crater', 'day', 'dust', 'equinox', 'eclipse', 'ecliptic', 'galaxy', 'lunar', 'meteorite', 'meteor', 'meteoroid', 'lens', 'gravity',  'inertia', 'nebula', 'orbit', 'rocket', 'solar', 'solstice', 'star', 'umbra', 'space', 'sky', 'satellite', 'penumbra', 'rings', 'observatory', 'phase', 'universe', 'zodiac', 'sun', 'starlight'];
 var guesses=[]
 var correctGuesses = 0
 var wrongGuesses = 0
@@ -111,5 +111,5 @@ document.onkeyup = function (e){
                     }
                 }
             }
-        }
+    }
 }
