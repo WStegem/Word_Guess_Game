@@ -1,5 +1,5 @@
 var game=0
-var words = ['Space', 'Earth', 'Jupiter', 'Mars', 'Neptune', 'moon', 'Mercury', 'Pluto', 'Saturn, Venus', 'planet', 'waning', 'waxing', 'asteroid', 'astronaut', 'comet', 'binary', 'astronomer', 'astronomy', 'elliptical', 'density', 'constellation', 'cosmonaut', 'cosmos', 'crater', 'day', 'dust', 'equinox', 'eclipse', 'ecliptic', 'galaxy', 'lunar', 'meteorite', 'meteor', 'meteoroid', 'lens', 'gravity',  'inertia', 'nebula', 'orbit', 'rocket', 'solar', 'solstice', 'star', 'umbra', 'space', 'sky', 'satellite', 'penumbra', 'rings', 'observatory', 'phase', 'universe', 'zodiac', 'sun', 'starlight'];
+var words = ['uranus','space', 'earth', 'jupiter', 'mars', 'neptune', 'moon', 'mercury', 'pluto', 'saturn', 'venus', 'planet', 'waning', 'waxing', 'asteroid', 'astronaut', 'comet', 'binary', 'astronomer', 'astronomy', 'elliptical', 'density', 'constellation', 'cosmonaut', 'cosmos', 'crater', 'day', 'dust', 'equinox', 'eclipse', 'ecliptic', 'galaxy', 'lunar', 'meteorite', 'meteor', 'meteoroid', 'lens', 'gravity',  'inertia', 'nebula', 'orbit', 'rocket', 'solar', 'solstice', 'star', 'umbra', 'space', 'sky', 'satellite', 'penumbra', 'rings', 'observatory', 'phase', 'universe', 'zodiac', 'sun', 'starlight'];
 var guesses=[]
 var correctGuesses = 0
 var wrongGuesses = 0
@@ -43,6 +43,7 @@ function endGame(){
 }
 function correct(i){
     document.getElementById(i).innerHTML=answer[i];
+    console.log('showing '+i)
 }
 document.onkeyup = function (e){
     var guess = document.createElement('div')
@@ -77,10 +78,10 @@ document.onkeyup = function (e){
         case 90:
         checkKey(answer, e.key)
         }    
-    function checkKey(arr, content) {
-            if (arr.indexOf(content)==-1){
-                if(guesses.indexOf(content)==-1){
-                    guesses.push(content)
+    function checkKey(arr, key) {
+            if (arr.indexOf(key)==-1){
+                if(guesses.indexOf(key)==-1){
+                    guesses.push(key)
                     document.getElementById("wrongGuess").appendChild(guess)
                     wrongGuesses++
                     document.getElementById('guessLeft').innerHTML = tries-wrongGuesses;
@@ -95,10 +96,10 @@ document.onkeyup = function (e){
                 }
             }
             else{
-                if(guesses.indexOf(content)==-1){
+                if(guesses.indexOf(key)==-1){
                     for (i=0;i<arr.length;i++){
-                        if(arr[i]==content){
-                            guesses.push(content);
+                        if(arr[i]==key){
+                            guesses.push(key);
                             correct(i);
                             correctGuesses++;
                             if (correctGuesses==arr.length){
